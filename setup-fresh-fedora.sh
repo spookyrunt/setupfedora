@@ -52,4 +52,4 @@ gsettings set org.gnome.shell.extensions.dash-to-dock disable-overview-on-startu
 gsettings set org.gnome.mutter attach-modal-dialogs false
 
 echo ""
-echo "Finished. You might want to reboot."
+echo "Finished. Please reboot."
