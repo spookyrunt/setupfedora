@@ -7,7 +7,7 @@ rpm-ostree install --idempotent gnome-tweaks \
   nodejs npm \
   podman-docker podman-compose \
   gpaste gpaste-ui gnome-shell-extension-gpaste \
-  trash-cli
+  trash-cli earlyoom
 
 flatpak uninstall -y \
   org.gnome.Weather \
@@ -19,6 +19,9 @@ flatpak install org.gnome.extensions \
   org.gnome.gedit \
   net.nokyan.Resources \
   org.gnome.seahorse.Application
+
+# rpm-ostree install
+sudo systemctl enable earlyoom
 
 # export cargo bin
 if ! grep -q 'export PATH="$PATH:$HOME/.cargo/bin"' ~/.bash_profile 2>/dev/null; then
