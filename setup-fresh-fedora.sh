@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-rpm-ostree install --idempotent gnome-tweaks \
+rpm-ostree install -y --idempotent gnome-tweaks \
   git xclip xsel wl-clipboard \
   ripgrep fd-find fzf \
   nodejs npm \
@@ -9,13 +9,13 @@ rpm-ostree install --idempotent gnome-tweaks \
   gpaste gpaste-ui gnome-shell-extension-gpaste \
   trash-cli earlyoom
 
-flatpak uninstall -y \
+flatpak uninstall --system -y \
   org.gnome.Weather \
   org.gnome.Calendar \
   org.gnome.Contacts \
   org.gnome.TextEditor
 
-flatpak install org.gnome.extensions \
+flatpak install -y org.gnome.extensions \
   org.gnome.gedit \
   net.nokyan.Resources \
   org.gnome.seahorse.Application
