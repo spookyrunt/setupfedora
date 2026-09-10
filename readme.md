@@ -1,1 +1,1 @@
-run setup-fresh-fedora.sh
+run setup-fedora.sh

@@ -1,10 +1,31 @@
 #!/bin/bash
 set -euo pipefail
 
+RELEASE_JSON="$(curl -fsSL https://api.github.com/repos/neovim/neovim/releases/latest)"
+NVIM_LATEST_TAG="$(jq -er '.tag_name' <<<"$RELEASE_JSON")"
+CURRENT_VERSION="$(
+  nvim --version 2>/dev/null |
+    sed -n '1s/^NVIM //p' ||
+    true
+)"
+if [[ "$CURRENT_VERSION" == "$NVIM_LATEST_TAG" ]]; then
+  echo "Neovim is already installed and up to date ($CURRENT_VERSION). Skipping."
+  exit 0
+fi
+
 echo "==> Installing latest stable Neovim..."
-NVIM_URL=$(curl -s https://api.github.com/repos/neovim/neovim/releases/latest |
-  grep "browser_download_url.*nvim-linux-x86_64.tar.gz\"" |
-  cut -d '"' -f 4)
+NVIM_URL="$(
+  jq -er '
+    .assets[]
+    | select(.name == "nvim-linux-x86_64.tar.gz")
+    | .browser_download_url
+  ' <<<"$RELEASE_JSON"
+)"
+if [[ -z "$NVIM_URL" || "$NVIM_URL" == "null" ]]; then
+  echo "Error: Failed to fetch the Neovim download URL."
+  exit 1
+fi
+
 curl -LO "$NVIM_URL"
 tar xzf nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim
