@@ -7,7 +7,7 @@ rpm-ostree install -y --idempotent gnome-tweaks \
   nodejs npm \
   podman-docker podman-compose \
   gpaste gpaste-ui gnome-shell-extension-gpaste \
-  trash-cli earlyoom
+  trash-cli earlyoom gparted
 
 flatpak uninstall --system -y \
   org.gnome.Weather \
