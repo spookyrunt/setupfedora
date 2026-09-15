@@ -73,7 +73,9 @@ GSETTINGS_SCHEMA_DIR="$HOME/.local/share/gnome-shell/extensions/dash-to-dock@mic
 gsettings set org.gnome.mutter attach-modal-dialogs false
 gsettings set org.gnome.desktop.screensaver lock-enabled false
 gsettings set org.gnome.desktop.screensaver lock-delay 0
-gsettings set org.gnome.desktop.session idle-delay 900
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'␚
+gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 
 echo
 echo "Done. Current extension list:"
