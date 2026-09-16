@@ -56,7 +56,7 @@ if [ -z "$(ls -A ~/.local/share/themes/Yaru-light/ 2>/dev/null)" ]; then
     tar -xzv -C ~/.local/share/themes/Yaru-light/ --strip-components=1
 fi
 
-# gsettings
+# Set gsettings
 gsettings set org.gnome.shell.extensions.user-theme name "Yaru-light"
 gsettings set org.gnome.desktop.interface text-scaling-factor 1.10
 gsettings set org.gnome.SessionManager logout-prompt false
@@ -78,6 +78,23 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'no
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'␚
+
+# Disable redundant bazzite system extensions if available
+enabled=$(gnome-extensions list --system --enabled)
+for ext in \
+  blur-my-shell@aunetx \
+  compiz-alike-magic-lamp-effect@hermes83.github.com \
+  gsconnect@andyholmes.github.io \
+  hotedge@jonathan.jdoda.ca \
+  add-to-steam@pupper.space \
+  bazaar-integration@kolunmi.github.com \
+  logomenu@aryan_k \
+  desktop-cube@schneegans.github.com \
+  compiz-windows-effect@hermes83.github.com \
+  burn-my-windows@schneegans.github.com; do
+  grep -Fxq "$ext" <<<"$enabled" &&
+    gnome-extensions disable "$ext"
+done
 
 echo
 echo "Done. Current extension list:"
