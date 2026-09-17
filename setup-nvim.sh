@@ -96,7 +96,7 @@ return {
 EOF
 
 echo "==> Writing nvim configs..."
-mkdir -p "~/.config/nvim/lua/config"
+mkdir -p ~/.config/nvim/lua/config
 
 cat >~/.config/nvim/lua/config/filetypefix.lua <<'EOF'
 vim.api.nvim_create_autocmd("BufReadPost", {
