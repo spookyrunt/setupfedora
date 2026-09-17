@@ -98,6 +98,7 @@ EOF
 echo "==> Writing nvim configs..."
 mkdir -p ~/.config/nvim/lua/config
 
+# filetypefix for selinux sudoedit random suffix
 cat >~/.config/nvim/lua/config/filetypefix.lua <<'EOF'
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function(args)
