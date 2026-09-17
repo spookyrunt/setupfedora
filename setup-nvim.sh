@@ -121,8 +121,8 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 EOF
 
-if ! grep -Fqx 'require("config.filetypefix")' "~/.config/nvim/init.lua"; then
-  printf '\nrequire("config.filetypefix")\n' >> "~/.config/nvim/init.lua"
+if ! grep -Fqx 'require("config.filetypefix")' ~/.config/nvim/init.lua; then
+  printf '\nrequire("config.filetypefix")\n' >>~/.config/nvim/init.lua
 fi
 
 echo ""
