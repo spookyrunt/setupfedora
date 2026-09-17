@@ -50,7 +50,7 @@ echo "==> Installing LazyVim..."
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
-echo "==> Writing LazyVim plugin configs..."
+echo "==> Writing nvim plugin configs..."
 mkdir -p ~/.config/nvim/lua/plugins
 
 cat >~/.config/nvim/lua/plugins/colorscheme.lua <<'EOF'
@@ -94,6 +94,36 @@ return {
   },
 }
 EOF
+
+echo "==> Writing nvim configs..."
+mkdir -p "~/.config/nvim/lua/config"
+
+cat >~/.config/nvim/lua/config/filetypefix.lua <<'EOF'
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function(args)
+    local buf = args.buf
+    local path = vim.api.nvim_buf_get_name(buf)
+    if path == "" then return end
+    -- Detect using the complete filename first.
+    local filename = vim.fn.fnamemodify(path, ":t")
+    local ft = vim.filetype.match({ filename = filename })
+    if ft then
+      vim.bo[buf].filetype = ft
+      return
+    end
+    -- Treat the final dot-separated part as a temporary suffix.
+    local original_name, suffix = filename:match("^(.*)%.([^./]+)$")
+    if not original_name or not suffix or #suffix < 6 then return end
+    -- Detect using only the restored filename.
+    ft = vim.filetype.match({ filename = original_name })
+    if ft then vim.bo[buf].filetype = ft end
+  end,
+})
+EOF
+
+if ! grep -Fqx 'require("config.filetypefix")' "~/.config/nvim/init.lua"; then
+  printf '\nrequire("config.filetypefix")\n' >> "~/.config/nvim/init.lua"
+fi
 
 echo ""
 echo "==> Finished installing LazyVim."
