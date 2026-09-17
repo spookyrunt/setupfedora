@@ -13,7 +13,7 @@ flatpak install -y org.gnome.Extensions \
   org.gnome.seahorse.Application || true
 
 # setup ll
-grep -qxF "alias ll='ls -alF --color=auto'" ~/.bashrc || echo "alias ll='ls -alF --color=auto'" >>~/.bashrc
+grep -qxF "alias ll='ls -alF'" ~/.bashrc || echo "alias ll='ls -alF'" >>~/.bashrc
 
 # hangul IME
 ibus restart
