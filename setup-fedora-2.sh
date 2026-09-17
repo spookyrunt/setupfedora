@@ -12,6 +12,9 @@ flatpak install -y org.gnome.Extensions \
   net.nokyan.Resources \
   org.gnome.seahorse.Application || true
 
+# setup ll
+grep -qxF "alias ll='ls -alF --color=auto'" ~/.bashrc || echo "alias ll='ls -alF --color=auto'" >>~/.bashrc
+
 # hangul IME
 ibus restart
 gsettings set org.gnome.desktop.input-sources sources "[('ibus', 'hangul')]"
