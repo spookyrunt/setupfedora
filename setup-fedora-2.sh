@@ -12,6 +12,9 @@ flatpak install -y org.gnome.Extensions \
   net.nokyan.Resources \
   org.gnome.seahorse.Application || true
 
+# turn on ssh
+sudo systemctl enable --now sshd.service
+
 # setup ll
 grep -qxF "alias ll='ls -alF'" ~/.bashrc || echo "alias ll='ls -alF'" >>~/.bashrc
 
