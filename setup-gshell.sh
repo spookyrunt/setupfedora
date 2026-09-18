@@ -77,7 +77,7 @@ gsettings set org.gnome.desktop.session idle-delay 900
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
-gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'␚
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 
 # Disable redundant bazzite system extensions if available
 enabled=$(gnome-extensions list --system --enabled)
