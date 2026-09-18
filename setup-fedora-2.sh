@@ -23,13 +23,13 @@ gsettings set org.gnome.desktop.input-sources sources "[('ibus', 'hangul')]"
 sudo systemctl enable earlyoom
 
 # export cargo bin
-if ! grep -q 'export PATH="$PATH:$HOME/.cargo/bin"' ~/.bash_profile 2>/dev/null; then
-  printf '\nexport PATH="$PATH:$HOME/.cargo/bin"' >>~/.bash_profile
+if ! grep -q 'export PATH="$HOME/.cargo/bin:$PATH"' ~/.bash_profile 2>/dev/null; then
+  printf '\nexport PATH="$HOME/.cargo/bin:$PATH"' >>~/.bash_profile
 fi
 
 # export go bin
-if ! grep -q 'export PATH="$PATH:$HOME/go/bin"' ~/.bash_profile 2>/dev/null; then
-  printf '\nexport PATH="$PATH:$HOME/go/bin"' >>~/.bash_profile
+if ! grep -q 'export PATH="$HOME/go/bin:$PATH"' ~/.bash_profile 2>/dev/null; then
+  printf '\nexport PATH="$HOME/go/bin:$PATH"' >>~/.bash_profile
 fi
 
 ./setup-nvim.sh
