@@ -8,8 +8,7 @@ is_btrfs() {
 SYSTEM_DIR="/usr/share/ollama"
 USER_DIR="$HOME/.ollama"
 
-echo ">>> Starting pre-installation Btrfs NOCOW configuration..."
-
+echo "Starting pre-installation Btrfs NOCOW configuration..."
 mkdir -p "$USER_DIR"
 if is_btrfs "$USER_DIR"; then
   chattr -R +C "$USER_DIR"
@@ -18,9 +17,7 @@ else
   echo "[INFO] $USER_DIR not on Btrfs, skipping"
 fi
 
-echo ">>> Pre-configuration complete. Running the official Ollama installer..."
-echo "--------------------------------------------------------"
-
+echo "Pre-configuration complete. Running the official Ollama installer..."
 curl -fsSL https://ollama.com/install.sh | sh
 
 RAM=$(free -m | awk '/^Mem:/{print $2}')
@@ -50,3 +47,6 @@ Environment=OLLAMA_KV_CACHE_TYPE=q4_0
 [Install]
 WantedBy=multi-user.target
 EOF
+
+echo ""
+echo "Finished installing Ollama."
