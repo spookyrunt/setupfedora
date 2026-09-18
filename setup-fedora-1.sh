@@ -2,7 +2,7 @@
 set -euo pipefail
 
 rpm-ostree install -y --idempotent gnome-tweaks \
-  git xclip xsel wl-clipboard \
+  git xclip xsel \
   ripgrep fd-find fzf \
   nodejs npm \
   podman-docker podman-compose \
